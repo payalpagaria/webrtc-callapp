@@ -1,24 +1,24 @@
 import logo from './logo.svg';
 import './App.css';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { SocketProvider } from './providers/SocketProvider';
+import JoinRoom from './pages/JoinRoom/JoinRoom';
+import MeetingRoom from './pages/MeetingRoom/MeetingRoom';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <>
+      <Router>
+      <SocketProvider>
+
+          <Routes>
+              <Route path='/' element={<JoinRoom/>}/>
+              <Route path='/meetingroom/:id' element={<MeetingRoom/>}/>
+          </Routes>
+          </SocketProvider>
+
+      </Router>
+   </>
   );
 }
 
